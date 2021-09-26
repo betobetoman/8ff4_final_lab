@@ -15,13 +15,24 @@ Assumes a configuration matching an AgnosticD `three-tier-app` with a `devops` s
 +
 [source,bash]
 ----
+export GUID=<YOUR_GUID>
 ansible-playbook main.yml
 ----
 
 
-=== Overall Architecture 
+=== Overall architecture is:
 
-image::.images/ntier-app-topology.png[role="thumb center" width=80%]
+          Cflask1
+lb ->     fla          postgres 
+          flask2
+          flaskn...
+          
+
+
+
+
+
+
 
 *Concept change from `bad-ansible`*
 
@@ -69,4 +80,11 @@ https://opensource.com/article/17/6/ansible-postgresql-operations
 ** I used their phone app during debugging
 ** Shout out for their Ansible Automation Cookbook
 * Jeff Geerlinguy for his Ansible Galaxy Postgres Role
+
+
+
+
+Add notes for Remote development via a jumpbox
+
+
 
