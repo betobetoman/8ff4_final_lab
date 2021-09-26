@@ -72,3 +72,7 @@
 
   become_user: "{{ postgres_user }}"
 
+- name: get IP address appdb1
+  debug: hostvars['appdb1']['ansible_default_ipv4']['address']
+  register: ip_addr_db1
+
