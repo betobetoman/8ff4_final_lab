@@ -3,6 +3,8 @@
 - name: Disable any postgres module repos
   command: dnf -qy module disable postgresql
 
+- debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+
 - name: Install Postgres packages
   dnf:
     name: "{{ __package }}"
@@ -71,5 +73,3 @@
       no_log: "{{ postgres_user_no_log_state | default(false) }}" 
 
   become_user: "{{ postgres_user }}"
-
-   - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
