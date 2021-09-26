@@ -36,10 +36,9 @@
   tasks:
  
     - name: Check webserver for correct response
-      uri:
-        url: "frontend1"
-        return_content: yes
+      shell: curl -XGET --head --silent http://frontend1.example.com
       register: result
-      delegate_to: localhost
-
+      until: result.stdout.find ("200 OK")!= -1
+      retries: 10
+      delay: 1
 ...
