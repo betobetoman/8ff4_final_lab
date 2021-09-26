@@ -1,6 +1,6 @@
 ---
 - name: Deploy, configure, and populate Postgres 12
-  hosts: database_servers
+  hosts: database_servers:app_servers:load_balancers
   become: true
   gather_facts: true
   collections:
@@ -9,28 +9,16 @@
     - database_servers
   roles:
     - postgres
+  when: inventory_hostname in database_servers
 
-- name: Deploy, configure, and populate flask repo and virtualenv
-  hosts: app_servers
-  become: true
-  gather_facts: true
   tags:
     - app_servers
-
   roles:
-
     - flask
-    
-- name: Deploy haproxy load balancer
-  hosts: load_balancers
-  gather_facts: false 
-  become: true
-
+  when: inventory_hostname in app_servers
   tags:
     - load_balancers
-
   roles:
-
     - haproxy
-
+  when: inventory_hostname in load_balancers
 ...    
