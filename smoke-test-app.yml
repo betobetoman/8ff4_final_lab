@@ -37,7 +37,7 @@
  
     - name: Check webserver for correct response
       uri:
-        url: "http://frontend1.example.com"
+        url: "frontend1"
         return_content: yes
       register: result
       delegate_to: localhost
