@@ -1,10 +1,2 @@
 ---
 # vars file for roles/flask
-- name: Manage OpenStack Servers
-  hosts: localhost
-  gather_facts: false
-  become: false
-  tasks:
-  - name: Obtain IP address from server
-    command: "openstack server list --os-cloud=8ff4-project | grep -i appdb1 | awk '{print $8}'| awk -F= '{print $2}'"
-    register: command_output
