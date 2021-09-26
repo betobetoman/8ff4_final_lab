@@ -1,9 +1,4 @@
 ---
-- name: Obtain IP address from server
-  hosts: localhost 
-    command: "openstack server list --os-cloud=8ff4-project | grep -i appdb1 | awk '{print $8}'| awk -F= '{print $2}'"
-    register: command_output  
-
 - name: Deploy, configure, and populate Postgres 12
   hosts: database_servers
   become: true
