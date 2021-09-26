@@ -4,6 +4,7 @@
   command: dnf -qy module disable postgresql
 
 - debug: var=hostvars[inventory_hostname]['ansible_default_ipv4']['address']
+  register: ip_addr_db1
 
 - name: Install Postgres packages
   dnf:
